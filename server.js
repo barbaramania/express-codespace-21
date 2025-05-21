@@ -7,37 +7,37 @@ const port = 3000;
 //create instance of Express app
 const app = express();
 
-//ejs templating
+//ejs is templating engine
 app.set('view engine','ejs');
 
 //this will allow us to serve up static files, CSS, images & JS
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 //index/home URL
 app.get('/',(req,res)=>{
-  let title = "Home Page";
-  res.render('pages/index',{'title':title});
+    let title = "Home Page";
+    res.render('pages/index',{'title': title});
 });
 
 //about URL
 app.get('/about',(req,res)=>{
-  let title = "About Page";
-  res.render('pages/about',{'title':title});
+    let title = "About Page";
+    res.render('pages/about',{'title': title});
 });
 
+app.get('/frogs', (req, res) => {
+  res.render('pages/frogs', { title: "Fun Frog Facts" });
+});
 
-// //about page/url
-// app.get('/about',(req,res)=>{
-//     res.send(`
-// 	    <h1>About Page</h1>
-//       <p>Stuff about us goes here!</p>
-//   `);
+app.get('/habitat', (req, res) => {
+  res.render('pages/habitat', { title: "Frog Habitats" });
+});
 
-// });
-
+app.get('/sounds', (req, res) => {
+  res.render('pages/sounds', { title: "Frog Sounds" });
+});
 
 //Set server to listen for requests
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
 });
-
