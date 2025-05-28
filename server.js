@@ -28,12 +28,25 @@ app.get('/about',(req,res)=>{
     let title = "About Page";
     res.render('pages/about',{'title': title});
 });
+
 //route
 app.get('/users',(req,res)=>{
     let title = "Users Page";
-    res.render('users/index',{'title': title});
+    res.render('users/index',{
+      'title': title,
+      'users': data
+    });
 });
 
+//add user/view route - we are cheating by using the array index - 1
+app.get('/users/view/:id', function(req, res) {
+ var title = 'User Page';
+ var id = req.params.id;
+ res.render('users/view', {
+     title: title,
+     user: data[--id]
+ });
+});
 
 app.get('/frogs', (req, res) => {
   res.render('pages/frogs', { title: "Fun Frog Facts" });
