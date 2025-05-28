@@ -1,5 +1,6 @@
 //include Express
 const express = require('express');
+const req = require('express/lib/request');
 
 //server will listen on this port
 const port = 3000;
@@ -13,6 +14,9 @@ app.set('view engine','ejs');
 //this will allow us to serve up static files, CSS, images & JS
 app.use(express.static(__dirname));
 
+//reference test json file
+var data = require('./test.json');
+
 //index/home URL
 app.get('/',(req,res)=>{
     let title = "Home Page";
@@ -24,6 +28,12 @@ app.get('/about',(req,res)=>{
     let title = "About Page";
     res.render('pages/about',{'title': title});
 });
+//route
+app.get('/users',(req,res)=>{
+    let title = "Users Page";
+    res.render('users/index',{'title': title});
+});
+
 
 app.get('/frogs', (req, res) => {
   res.render('pages/frogs', { title: "Fun Frog Facts" });
@@ -40,4 +50,5 @@ app.get('/sounds', (req, res) => {
 //Set server to listen for requests
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
+  console.log(data);
 });
