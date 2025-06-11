@@ -68,6 +68,8 @@ app.get('/sounds', (req, res) => {
 //all of our recipe routes are now here
 const recipeRoutes = require('./routes/recipes');
 app.use('/recipes', recipeRoutes);
+app.use(express.static('public'));
+
 
 //Set server to listen for requests
 app.listen(port, () => {
