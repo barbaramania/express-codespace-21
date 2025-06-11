@@ -65,6 +65,10 @@ app.get('/sounds', (req, res) => {
   res.render('pages/sounds', { title: "Frog Sounds" });
 });
 
+//all of our recipe routes are now here
+const recipeRoutes = require('./routes/recipes');
+app.use('/recipes', recipeRoutes);
+
 //Set server to listen for requests
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
